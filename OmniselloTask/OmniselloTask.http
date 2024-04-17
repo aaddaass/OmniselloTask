@@ -1,0 +1,6 @@
+@OmniselloTask_HostAddress = http://localhost:5089
+
+GET {{OmniselloTask_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
