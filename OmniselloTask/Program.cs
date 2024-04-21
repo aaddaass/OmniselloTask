@@ -36,8 +36,8 @@ builder.Services.AddSwaggerGen(); //add swagger service
 
 builder.Services.AddAuthentication().AddGoogle(googleOptions =>
 {
-    googleOptions.ClientId = "Authentication:Google:ClientId";
-    googleOptions.ClientSecret = "Authentication:Google:ClientSecret";
+    googleOptions.ClientId = "389717730683-voekeirpsuleo994313a7nol9ebbs1d8.apps.googleusercontent.com";
+    googleOptions.ClientSecret = "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";
 });
 
 var app = builder.Build();
