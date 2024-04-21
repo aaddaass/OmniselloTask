@@ -1,8 +1,12 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using OmniselloTask.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var vegeApiKey = builder.Configuration["VegetableSecretApi"];
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("OmniselloDatabase") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
@@ -12,14 +16,33 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
+//builder.Services.AddAuthentication(options =>
+//{
+//    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+//    options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+//})
+//    .AddCookie()
+//    .AddGoogle(GoogleDefaults.AuthenticationScheme, options=>
+//    {
+//        options.ClientId = builder.Configuration.GetSection("GoogleKeys:ClientId").Value;
+//        options.ClientSecret = builder.Configuration.GetSection("GoogleKeys:ClientSecret").Value;
+//    });
+
 builder.Services.AddControllersWithViews();
 
 //builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(); //add swagger service
 
-
+builder.Services.AddAuthentication().AddGoogle(googleOptions =>
+{
+    googleOptions.ClientId = "Authentication:Google:ClientId";
+    googleOptions.ClientSecret = "Authentication:Google:ClientSecret";
+});
 
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
