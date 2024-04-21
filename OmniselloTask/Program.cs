@@ -17,17 +17,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
-//builder.Services.AddAuthentication(options =>
-//{
-//    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-//    options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
-//})
-//    .AddCookie()
-//    .AddGoogle(GoogleDefaults.AuthenticationScheme, options=>
-//    {
-//        options.ClientId = builder.Configuration.GetSection("GoogleKeys:ClientId").Value;
-//        options.ClientSecret = builder.Configuration.GetSection("GoogleKeys:ClientSecret").Value;
-//    });
+
 
 builder.Services.AddControllersWithViews();
 
