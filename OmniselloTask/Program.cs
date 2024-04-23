@@ -24,11 +24,18 @@ builder.Services.AddControllersWithViews();
 //builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(); //add swagger service
 
-builder.Services.AddAuthentication().AddGoogle(googleOptions =>
+builder.Services.AddAuthentication()
+    .AddGoogle(googleOptions =>
 {
     googleOptions.ClientId = "389717730683-voekeirpsuleo994313a7nol9ebbs1d8.apps.googleusercontent.com";
     googleOptions.ClientSecret = "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";
-});
+})
+    .AddFacebook(options =>
+    {
+        options.AppId = "1169033231044329";
+        options.AppSecret= "752e574b6298be619965e402424c5d1e";
+    });
+
 
 var app = builder.Build();
 
