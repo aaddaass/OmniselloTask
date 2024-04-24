@@ -16,11 +16,18 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+    .AddDefaultTokenProviders()
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    //.AddUserManager<ApplicationUser>()
+    //.AddSignInManager<ApplicationUser>()
+    .AddDefaultUI();
+    ;
 
 
 
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddRazorPages();
 
 //builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(); //add swagger service
@@ -71,5 +78,6 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
+
 
 app.Run();
