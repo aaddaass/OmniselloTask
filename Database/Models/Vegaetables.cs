@@ -7,5 +7,7 @@ namespace OmniselloTask.Models
         [Key]
         public int ID { get; set; }
         public string? NameVegatables { get;set; }
+        public decimal? VegaetablesPrice { get; set; }
+
     }
 }

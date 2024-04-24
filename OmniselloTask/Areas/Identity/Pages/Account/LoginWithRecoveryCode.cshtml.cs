@@ -10,17 +10,18 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using OmniselloTask.Models;
 namespace OmniselloTask.Areas.Identity.Pages.Account
 {
     public class LoginWithRecoveryCodeModel : PageModel
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<LoginWithRecoveryCodeModel> _logger;
 
         public LoginWithRecoveryCodeModel(
-            SignInManager<IdentityUser> signInManager,
-            UserManager<IdentityUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
+            UserManager<ApplicationUser> userManager,
             ILogger<LoginWithRecoveryCodeModel> logger)
         {
             _signInManager = signInManager;
@@ -72,41 +73,41 @@ namespace OmniselloTask.Areas.Identity.Pages.Account
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(string returnUrl = null)
-        {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+        //public async Task<IActionResult> OnPostAsync(string returnUrl = null)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return Page();
+        //    }
 
-            var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
-            if (user == null)
-            {
-                throw new InvalidOperationException($"Unable to load two-factor authentication user.");
-            }
+        //    var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
+        //    if (user == null)
+        //    {
+        //        throw new InvalidOperationException($"Unable to load two-factor authentication user.");
+        //    }
 
-            var recoveryCode = Input.RecoveryCode.Replace(" ", string.Empty);
+        //    var recoveryCode = Input.RecoveryCode.Replace(" ", string.Empty);
 
-            var result = await _signInManager.TwoFactorRecoveryCodeSignInAsync(recoveryCode);
+        //    var result = await _signInManager.TwoFactorRecoveryCodeSignInAsync(recoveryCode);
 
-            var userId = await _userManager.GetUserIdAsync(user);
+        //    var userId = await _userManager.GetUserIdAsync(user);
 
-            if (result.Succeeded)
-            {
-                _logger.LogInformation("User with ID '{UserId}' logged in with a recovery code.", user.Id);
-                return LocalRedirect(returnUrl ?? Url.Content("~/"));
-            }
-            if (result.IsLockedOut)
-            {
-                _logger.LogWarning("User account locked out.");
-                return RedirectToPage("./Lockout");
-            }
-            else
-            {
-                _logger.LogWarning("Invalid recovery code entered for user with ID '{UserId}' ", user.Id);
-                ModelState.AddModelError(string.Empty, "Invalid recovery code entered.");
-                return Page();
-            }
-        }
+        //    if (result.Succeeded)
+        //    {
+        //        _logger.LogInformation("User with ID '{UserId}' logged in with a recovery code.", user.Id);
+        //        return LocalRedirect(returnUrl ?? Url.Content("~/"));
+        //    }
+        //    if (result.IsLockedOut)
+        //    {
+        //        _logger.LogWarning("User account locked out.");
+        //        return RedirectToPage("./Lockout");
+        //    }
+        //    else
+        //    {
+        //        _logger.LogWarning("Invalid recovery code entered for user with ID '{UserId}' ", user.Id);
+        //        ModelState.AddModelError(string.Empty, "Invalid recovery code entered.");
+        //        return Page();
+        //    }
+        //}
     }
 }
