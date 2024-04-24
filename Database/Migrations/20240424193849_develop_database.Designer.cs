@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OmniselloTask.Data;
 
@@ -11,9 +12,11 @@ using OmniselloTask.Data;
 namespace Database.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240424193849_develop_database")]
+    partial class develop_database
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,8 +33,11 @@ namespace Database.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("ID_User")
+                    b.Property<string>("ApplicationUserId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ID_User")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<double?>("OrderAmount")
                         .HasColumnType("float");
@@ -41,22 +47,36 @@ namespace Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ID_User");
+                    b.HasIndex("ApplicationUserId");
 
                     b.ToTable("Order");
                 });
 
             modelBuilder.Entity("Database.Models.Order_Vege", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
                     b.Property<int>("IdOrder")
                         .HasColumnType("int");
 
                     b.Property<int>("IdVege")
                         .HasColumnType("int");
 
-                    b.HasKey("IdOrder", "IdVege");
+                    b.Property<int?>("OrderId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("IdVege");
+                    b.Property<int?>("VegetablesID")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("VegetablesID");
 
                     b.ToTable("Order_Vege");
                 });
@@ -303,7 +323,7 @@ namespace Database.Migrations
                 {
                     b.HasOne("OmniselloTask.Models.ApplicationUser", "ApplicationUser")
                         .WithMany("Order")
-                        .HasForeignKey("ID_User");
+                        .HasForeignKey("ApplicationUserId");
 
                     b.Navigation("ApplicationUser");
                 });
@@ -312,15 +332,11 @@ namespace Database.Migrations
                 {
                     b.HasOne("Database.Models.Order", "Order")
                         .WithMany("Order_Veges")
-                        .HasForeignKey("IdOrder")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OrderId");
 
                     b.HasOne("OmniselloTask.Models.Vegetables", "Vegetables")
                         .WithMany("VegeOrder")
-                        .HasForeignKey("IdVege")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("VegetablesID");
 
                     b.Navigation("Order");
 
