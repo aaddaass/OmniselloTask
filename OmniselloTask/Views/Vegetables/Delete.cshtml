@@ -1,0 +1,42 @@
+﻿@model Vegetables
+
+
+
+@{
+    ViewData["Title"] = "Delete";
+
+}
+
+
+
+<h3>Are You sure to delete this vegetable?</h3>
+<br />
+<form asp-action="Delete">
+    <input type="hidden" asp-for="ID" />
+    <input type="submit" value="Yes" class="btn btn-outline-danger btn-lg" style="height:55px; width:100px" />
+    <a asp-action="Index" class="btn btn-outline-success btn-lg" style="height:55px; width:100px">Cancel</a>
+</form>
+
+
+    <hr />
+
+
+    <div>
+
+        <div class="text-center float-left" style="width:65%">
+            <div class="row align-items-center">
+                <div class="col-4 "><h6>Name</h6></div>
+                <div class="col-4 "><h6>Price</h6></div>
+                <div class="col-4 "><h6>Unit</h6></div>
+            </div>
+            <div class="row align-items-center bg-light">
+                <div class="col-4 "><h3>@Model.NameVegetables</h3></div>
+                <div class="col-4 "><h3>@Model.VegetablesPrice</h3></div>
+                <div class="col-4 "><h3>@Model.VegetablesUnit</h3></div>
+            </div>
+            <br />
+
+            
+
+    </div>
+

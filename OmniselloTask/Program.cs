@@ -4,6 +4,8 @@ using OmniselloTask.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
 using OmniselloTask.Models;
+using Repository.Interface;
+using Repository.IRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,6 +47,8 @@ builder.Services.AddAuthentication()
         options.AppId = "1169033231044329";
         options.AppSecret= "752e574b6298be619965e402424c5d1e";
     });
+
+builder.Services.AddScoped<IVegetables, RepoVege>();
 
 
 var app = builder.Build();

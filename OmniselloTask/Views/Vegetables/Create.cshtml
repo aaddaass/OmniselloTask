@@ -1,0 +1,40 @@
+﻿@model Vegetables
+
+@{
+    ViewBag.Title = "Add new Vegetable";
+}
+<h1>Utwórz</h1>
+
+<h4>Add Vege</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Name </label>
+                <input asp-for="NameVegetables" class="form-control" />
+                <span asp-validation-for="NameVegetables" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Price</label>
+                <input asp-for="VegetablesPrice" class="form-control" />
+                <span asp-validation-for="VegetablesPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Unit</label>
+                <input asp-for="VegetablesUnit" class="form-control" />
+                <span asp-validation-for="VegetablesUnit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add" class="btn btn-outline-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-outline-primary">Back</a>
+</div>
+
+

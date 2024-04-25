@@ -33,8 +33,8 @@ namespace Database.Migrations
                     b.Property<string>("ID_User")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<double?>("OrderAmount")
-                        .HasColumnType("float");
+                    b.Property<decimal?>("OrderAmount")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
@@ -43,7 +43,7 @@ namespace Database.Migrations
 
                     b.HasIndex("ID_User");
 
-                    b.ToTable("Order", (string)null);
+                    b.ToTable("Order");
                 });
 
             modelBuilder.Entity("Database.Models.Order_Vege", b =>
@@ -58,7 +58,7 @@ namespace Database.Migrations
 
                     b.HasIndex("IdVege");
 
-                    b.ToTable("Order_Vege", (string)null);
+                    b.ToTable("Order_Vege");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -296,7 +296,7 @@ namespace Database.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Vegetable", (string)null);
+                    b.ToTable("Vegetable");
                 });
 
             modelBuilder.Entity("Database.Models.Order", b =>

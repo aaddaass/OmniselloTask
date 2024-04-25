@@ -1,0 +1,46 @@
+﻿@model Vegetables
+
+@{
+    ViewBag.Title = "Edit Vege";
+}
+
+<h1>Edit Vege.</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Vegetables" asp-action="Edit" method="post">
+
+            <input type="hidden" asp-for="ID" />
+
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Name</label>
+                <input asp-for="NameVegetables" class="form-control">
+                <span asp-validation-for="NameVegetables" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Price</label>
+                <input asp-for="VegetablesPrice" class="form-control">
+                <span asp-validation-for="VegetablesPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Unit</label>
+                <input asp-for="VegetablesUnit" class="form-control">
+                <span asp-validation-for="VegetablesUnit" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-outline-success">Save</button>
+            </div>
+
+            <div>
+                <a asp-action="Index" class="btn btn-outline-primary">Wróć</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
