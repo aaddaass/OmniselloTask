@@ -13,9 +13,9 @@ namespace Database.Models
         [Key]
         public int      Id          { get; set; }
         public DateTime OrderDate   { get; set; }
-        public double?  OrderAmount { get; set; }
+        public decimal?  OrderAmount { get; set; }
         public string?  ID_User     { get; set; }
         public ApplicationUser? ApplicationUser { get; set; }
-        public IList<Order_Vege> Order_Veges    { get; set; }
+        public IList<Order_Vege>? Order_Veges    { get; set; }
     }
 }

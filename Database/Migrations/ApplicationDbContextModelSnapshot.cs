@@ -43,7 +43,7 @@ namespace Database.Migrations
 
                     b.HasIndex("ID_User");
 
-                    b.ToTable("Order");
+                    b.ToTable("Order", (string)null);
                 });
 
             modelBuilder.Entity("Database.Models.Order_Vege", b =>
@@ -58,7 +58,7 @@ namespace Database.Migrations
 
                     b.HasIndex("IdVege");
 
-                    b.ToTable("Order_Vege");
+                    b.ToTable("Order_Vege", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -296,7 +296,7 @@ namespace Database.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Vegetable");
+                    b.ToTable("Vegetable", (string)null);
                 });
 
             modelBuilder.Entity("Database.Models.Order", b =>
