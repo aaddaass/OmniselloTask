@@ -3,7 +3,7 @@
     "mssql1": {
       "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Web/sites/OmniselloTaskPublishMainProfile/providers/Microsoft.ServiceLinker/linkers/OmniselloDatabase_3A72911D6C",
       "secretStore": "AzureAppSettings",
-      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/testtaskappdbserver/databases/aspnet-Omnisello",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/testtaskappdbserver/databases/aspnet-OmniselloTask-f6cd16f2-1ad8-4f40-b730-3437391b807b",
       "type": "mssql.azure",
       "connectionId": "OmniselloDatabase"
     }

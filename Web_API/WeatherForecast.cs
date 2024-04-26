@@ -1,4 +1,4 @@
-namespace OmniselloTask
+namespace Web_API
 {
     public class WeatherForecast
     {

@@ -1,32 +1,20 @@
 ﻿@model IEnumerable<Vegetables>
 
-<a class="btn" asp-controller="Vegetables" asp-action="Create">Add Vegetable</a>
+<a class="btn btn-outline-primary" asp-controller="Vegetables" asp-action="Create">Add Vegetable</a>
 @foreach (var item in Model)
 {
-    <div class="row mb-3 border-bottom">
+   
         <div class="col  mb-1">
             @Html.DisplayFor(modelItem => item.NameVegetables)
             @Html.DisplayFor(modelItem => item.VegetablesUnit)
             @Html.DisplayFor(modelItem => item.VegetablesPrice)
         </div>
         <div class="col  mb-1">
-            <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-outline-primary">Edytuj</a>
-            <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-outline-primary">Usuń</a>
+            <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-outline-primary">Edit</a>
+            <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-outline-primary">Delete</a>
         </div>
-        <div class="col mb-1">
-            <form asp-action="Delete" method="post" asp-route-id="@item.ID">
-                <span id="confirmDeleteSpan_@item.ID" style="display:none">
-                    <span>Czy na pewno chcesz usunąć?</span>
-                    <button type="submit" class="btn btn-outline-danger">Tak</button>
-                    <a href="#" class="btn btn-outline-primary"
-                       onclick="confirmDelete('@item.ID', false)">Nie</a>
-                </span>
-                <span id="deleteSpan_@item.ID">
-                    <a href="#" class="btn btn-outline-danger"
-                       onclick="confirmDelete('@item.ID', true)">Usuń</a>
-                </span>
-            </form>
-        </div>
-    </div>
+       
+       
+  
 
 }
